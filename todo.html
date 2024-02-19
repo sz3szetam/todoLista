@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.1.min.js"></script>
+    <script>
+        $(document.ready(function()
+        {
+            ("#hozzaadas").click(function()
+            {
+                let todo = ("todo").val();
+                $.ajax({
+                    url: "todo.php",
+                    method: POST,
+                    data: {todo: todo}
+                })
+                .done(function(response)
+                {
+                    if(response.trim() === "Sikeres mentés")
+                    {
+                        location.replace("lista.html");
+                    }
+                })
+                .fail(function(xhr,status)
+                {
+                    console.log(status);
+                })
+                
+                
+            })
+        }))
+
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="todo" placeholder="feladat hozzáadása">
+    <button id="hozzaadas"></button>
+</body>
+</html>
